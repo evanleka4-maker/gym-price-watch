@@ -32,7 +32,7 @@ CATALOG = [
         "description": "Compare prices on 20kg Olympic barbells across Rogue, Titan, Rep Fitness, and FringeSport. Updated daily.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/the-ohio-bar",
-            "titan":        "https://www.titanfitness.com/products/olympic-weightlifting-bar",
+            "titan":        "https://www.titanfitness.com/products/performance-series-olympic-barbell",
             "fringe":       "https://www.fringesport.com/products/wonder-bar-olympic-barbell",
         }
     },
@@ -42,7 +42,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "Compare power bar prices across Rogue, Titan, and Rep Fitness. Aggressive knurl, stiff shaft, IPF approved.",
         "retailers": {
-            "titan":        "https://www.titanfitness.com/products/texas-power-bar",
+            "titan":        "https://www.titanfitness.com/products/elite-series-power-barbell",
         }
     },
     {
@@ -51,7 +51,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "Compare power rack prices across Rogue, Titan, and Rep Fitness. All 3x3 11-gauge steel.",
         "retailers": {
-            "titan":        "https://www.titanfitness.com/products/t-3-power-rack",
+            "titan":        "https://www.titanfitness.com/products/t-3-series-power-rack-82-24",
             "rep_fitness":  "https://repfitness.com/products/pr-5000-power-rack",
         }
     },
@@ -62,7 +62,7 @@ CATALOG = [
         "description": "Compare 45lb bumper plate prices across Rogue, Titan, Rep Fitness, and FringeSport. Updated daily.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-hg-2-0-bumper-plates",
-            "titan":        "https://www.titanfitness.com/products/competition-bumper-plates",
+            "titan":        "https://www.titanfitness.com/products/lb-economy-black-bumper-plates",
             "rep_fitness":  "https://repfitness.com/products/rep-black-bumper-plates",
             "fringe":       "https://www.fringesport.com/products/bumper-plates",
         }
@@ -73,7 +73,7 @@ CATALOG = [
         "category": "Benches",
         "description": "Compare flat bench prices across Rogue, Titan, and Rep Fitness. All rated 1000lb+.",
         "retailers": {
-            "titan":        "https://www.titanfitness.com/products/competition-flat-bench",
+            "titan":        "https://www.titanfitness.com/products/elite-series-single-post-flat-bench",
         }
     },
     {
@@ -82,7 +82,7 @@ CATALOG = [
         "category": "Benches",
         "description": "Compare adjustable bench prices across Titan and Rep Fitness. Incline, flat, and decline positions.",
         "retailers": {
-            "titan":        "https://www.titanfitness.com/products/adjustable-bench",
+            "titan":        "https://www.titanfitness.com/products/performance-series-adjustable-bench",
             "rep_fitness":  "https://repfitness.com/products/rep-ab-5200-adjustable-bench",
         }
     },
@@ -93,8 +93,8 @@ CATALOG = [
         "description": "Compare safety squat bar prices across Rogue, Titan, and Rep Fitness.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/safety-squat-bar",
-            "titan":        "https://www.titanfitness.com/products/safety-squat-bar",
-            "rep_fitness":  "https://repfitness.com/products/safety-squat-bar",
+            "titan":        "https://www.titanfitness.com/products/safety-squat-olympic-bar",
+            "rep_fitness":  "https://repfitness.com/products/safety-squat-olympic-bar",
         }
     },
     {
@@ -104,7 +104,7 @@ CATALOG = [
         "description": "Compare trap bar prices across Rogue, Titan, and Rep Fitness.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-tb-2-trap-bar",
-            "titan":        "https://www.titanfitness.com/products/trap-bar",
+            "titan":        "https://www.titanfitness.com/products/open-trap-bar",
             "rep_fitness":  "https://repfitness.com/products/rep-trap-bar",
         }
     },
@@ -143,7 +143,7 @@ CATALOG = [
         "description": "Compare lever belt prices across Rogue and Titan. Both IPF approved, 10mm thick.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-ohio-lifting-belt",
-            "titan":        "https://www.titanfitness.com/products/lever-belt",
+            "titan":        "https://www.titanfitness.com/products/powerlifting-lever-belt",
         }
     },
 
@@ -181,7 +181,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "29mm power bar with aggressive knurl. 210k PSI tensile strength.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/texas-power-bar",
+            "titan": "https://www.titanfitness.com/products/elite-series-power-barbell",
         }
     },
     {
@@ -190,7 +190,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "20kg Olympic bar with center knurl, 190k PSI tensile strength.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/olympic-weightlifting-bar",
+            "titan": "https://www.titanfitness.com/products/performance-series-olympic-barbell",
         }
     },
     {
@@ -237,8 +237,8 @@ CATALOG = [
         "category": "Specialty Bars",
         "description": "Padded yoke SSB. Compare pricing vs Rogue on the same movement.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/safety-squat-bar",
-            "rep_fitness": "https://repfitness.com/products/safety-squat-bar",
+            "titan": "https://www.titanfitness.com/products/safety-squat-olympic-bar",
+            "rep_fitness": "https://repfitness.com/products/safety-squat-olympic-bar",
         }
     },
     {
@@ -256,7 +256,7 @@ CATALOG = [
         "category": "Specialty Bars",
         "description": "Closed-end hex bar. Affordable trap bar for deadlifts and shrugs.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/trap-bar",
+            "titan": "https://www.titanfitness.com/products/open-trap-bar",
             "rep_fitness": "https://repfitness.com/products/rep-trap-bar",
         }
     },
@@ -266,7 +266,7 @@ CATALOG = [
         "category": "Specialty Bars",
         "description": "Neutral grip pressing bar. Easier on shoulders than straight bar.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/multi-grip-swiss-bar",
+            "titan": "https://www.titanfitness.com/products/multi-grip-barbell-v3",
             "rep_fitness": "https://repfitness.com/products/rep-multi-grip-bar",
         }
     },
@@ -287,7 +287,7 @@ CATALOG = [
         "category": "Bumper Plates",
         "description": "Steel insert, low bounce competition-style bumpers.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/competition-bumper-plates",
+            "titan": "https://www.titanfitness.com/products/lb-economy-black-bumper-plates",
         }
     },
     {
@@ -334,7 +334,7 @@ CATALOG = [
         "category": "Iron Plates",
         "description": "Standard cast iron Olympic plates. Most affordable option.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/cast-iron-olympic-plates",
+            "titan": "https://www.titanfitness.com/products/crumb-rubber-bumper-plates",
             "rep_fitness": "https://repfitness.com/products/rep-iron-plates",
         }
     },
@@ -364,7 +364,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "3x3 11-gauge steel. The most popular budget rack on the market.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/t-3-power-rack",
+            "titan": "https://www.titanfitness.com/products/t-3-series-power-rack-82-24",
         }
     },
     {
@@ -373,7 +373,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "3x3 11-gauge steel. Titan's premium rack with more attachment options.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/x-3-flat-foot-power-rack",
+            "titan": "https://www.titanfitness.com/products/x-3-series-bolt-down-power-rack-80-24",
         }
     },
     {
@@ -420,7 +420,7 @@ CATALOG = [
         "category": "Benches",
         "description": "IPF legal competition bench. 1200lb capacity.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/competition-flat-bench",
+            "titan": "https://www.titanfitness.com/products/elite-series-single-post-flat-bench",
         }
     },
     {
@@ -447,7 +447,7 @@ CATALOG = [
         "category": "Benches",
         "description": "Multi-angle adjustable bench. Budget-friendly incline option.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/adjustable-bench",
+            "titan": "https://www.titanfitness.com/products/performance-series-adjustable-bench",
         }
     },
 
@@ -564,7 +564,7 @@ CATALOG = [
         "category": "Pull-Up Bars",
         "description": "Multiple grip positions, fits 2x2 and 3x3 uprights.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/multi-grip-pull-up-bar",
+            "titan": "https://www.titanfitness.com/products/t2-t2-x3-series-multi-grip-pull-up-bar",
             "rep_fitness": "https://repfitness.com/products/rep-multi-grip-pull-up-bar",
         }
     },
@@ -624,7 +624,7 @@ CATALOG = [
         "category": "Accessories",
         "description": "10mm lever belt. IPF approved at a fraction of Rogue's price.",
         "retailers": {
-            "titan": "https://www.titanfitness.com/products/lever-belt",
+            "titan": "https://www.titanfitness.com/products/powerlifting-lever-belt",
         }
     },
 ]
