@@ -14,7 +14,8 @@
       "Bash(git init *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(rm \"/Users/evanleka/Project 2/web/emailer.py\" \"/Users/evanleka/Project 2/scraper/reddit_monitor.py\")"
     ]
   }
 }

@@ -16,7 +16,6 @@ from database.seed import seed
 def start_server():
     from apscheduler.schedulers.background import BackgroundScheduler
     from scraper.runner import run_all
-    from scraper.reddit_monitor import run as reddit_run
     from web.app import app
     from config import SCRAPE_INTERVAL_HOURS
 
@@ -30,13 +29,6 @@ def start_server():
         trigger="interval",
         hours=SCRAPE_INTERVAL_HOURS,
         id="price_scraper",
-        replace_existing=True,
-    )
-    scheduler.add_job(
-        reddit_run,
-        trigger="interval",
-        hours=24,
-        id="reddit_monitor",
         replace_existing=True,
     )
     scheduler.start()

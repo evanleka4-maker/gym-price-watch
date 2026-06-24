@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Best Gym Equipment Prices Today — {{ site_name }}{% endblock %}
+{% block meta_description %}Today's lowest prices on gym equipment across Rogue, Titan, Rep Fitness, and FringeSport. Updated daily.{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-1">Today's Lowest Prices</h1>
+<p class="text-muted mb-4">Prices pulled live from Rogue, Titan, Rep Fitness, and FringeSport · Updated every 24 hours</p>
+
+{% if not deals %}
+<p class="text-muted">Prices are loading — check back in a few minutes.</p>
+{% endif %}
+
+{% set ns = namespace(current_cat="") %}
+{% for deal in deals %}
+  {% if deal.category != ns.current_cat %}
+    {% set ns.current_cat = deal.category %}
+    <h2 class="h5 mt-4 mb-2 border-bottom pb-1">{{ deal.category }}</h2>
+  {% endif %}
+
+  <div class="card mb-2 shadow-sm">
+    <div class="card-body py-2">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <a href="/product/{{ deal.slug }}" class="text-decoration-none fw-semibold">
+            {{ deal.name }}
+          </a>
+        </div>
+        <div class="col-md-2 text-center">
+          <span class="text-success fw-bold">${{ "%.2f"|format(deal.price) }}</span>
+        </div>
+        <div class="col-md-2 text-center text-muted small">
+          {{ deal.retailer.replace("_"," ").title() }}
+        </div>
+        <div class="col-md-2 text-end">
+          <a href="{{ deal.affiliate_url }}" class="btn btn-sm btn-danger"
+             target="_blank" rel="nofollow">Buy →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+<p class="small text-muted mt-4">
+  Prices updated daily. As an affiliate we may earn a commission from qualifying purchases.
+</p>
+{% endblock %}

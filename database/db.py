@@ -38,26 +38,6 @@ def init_db():
         )
     """)
 
-    c.execute("""
-        CREATE TABLE IF NOT EXISTS subscribers (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT NOT NULL,
-            product TEXT,
-            signed_up_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-
-    c.execute("""
-        CREATE TABLE IF NOT EXISTS price_history (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            listing_id INTEGER NOT NULL,
-            price REAL,
-            in_stock INTEGER DEFAULT 1,
-            scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (listing_id) REFERENCES retailer_listings(id)
-        )
-    """)
-
     conn.commit()
     conn.close()
 
@@ -131,45 +111,14 @@ def _build_affiliate_url(retailer, url, affiliate_ids):
     aid = affiliate_ids.get(retailer, "")
     if not aid or aid.startswith("YOUR_"):
         return url
-    if retailer == "rogue":
+    if retailer in ("rogue", "rep_fitness", "fringe"):
         return f"{url}?ref={aid}"
-    if retailer in ("titan", "rep_fitness"):
+    if retailer == "titan":
         return f"{url}?ref={aid}"
     if retailer == "amazon":
         sep = "&" if "?" in url else "?"
         return f"{url}{sep}tag={aid}"
     return url
-
-
-def get_price_history(product_id, conn):
-    rows = conn.execute("""
-        SELECT rl.retailer, ph.price, ph.scraped_at
-        FROM price_history ph
-        JOIN retailer_listings rl ON ph.listing_id = rl.id
-        WHERE rl.product_id = ?
-        ORDER BY ph.scraped_at ASC
-    """, (product_id,)).fetchall()
-    return [dict(r) for r in rows]
-
-
-def save_subscriber(email, product=""):
-    conn = get_conn()
-    conn.execute(
-        "INSERT INTO subscribers (email, product) VALUES (?, ?)",
-        (email, product)
-    )
-    conn.commit()
-    conn.close()
-
-
-def save_price(listing_id, price, in_stock=True):
-    conn = get_conn()
-    conn.execute(
-        "INSERT INTO price_history (listing_id, price, in_stock) VALUES (?, ?, ?)",
-        (listing_id, price, 1 if in_stock else 0)
-    )
-    conn.commit()
-    conn.close()
 
 
 def get_all_listings():
@@ -198,7 +147,7 @@ def search_products(query):
     return result
 
 
-def get_best_deals(limit=6):
+def get_best_deals(limit=50):
     from config import AFFILIATE_IDS
     from scraper.cache import get_price
 
@@ -223,3 +172,7 @@ def get_best_deals(limit=6):
 
     deals.sort(key=lambda x: x["price"])
     return deals[:limit]
+
+
+def get_all_products_with_prices():
+    return get_best_deals(limit=500)

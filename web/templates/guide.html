@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category }} Buying Guide — Best Prices & Comparisons | {{ site_name }}{% endblock %}
+{% block meta_description %}{{ guide.intro[:150] if guide.intro else "Compare " + category + " prices across Rogue, Titan, Rep Fitness, and FringeSport. Updated daily." }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">{{ category }} Guide</li>
+  </ol>
+</nav>
+
+<h1 class="h2 mb-2">{{ category }}: Price Comparison & Buying Guide</h1>
+<p class="text-muted small mb-4">Prices updated daily across Rogue, Titan, Rep Fitness, and FringeSport</p>
+
+{% if guide.intro %}
+<p class="lead mb-4">{{ guide.intro }}</p>
+{% endif %}
+
+<!-- Live price table -->
+<h2 class="h5 mb-3">Current Prices</h2>
+{% for item in products %}
+{% set p = item.product %}
+{% set listings = item.listings %}
+{% set best = listings | selectattr("price") | sort(attribute="price") | first | default(None) %}
+{% set amazon = listings | selectattr("retailer", "equalto", "amazon") | first | default(None) %}
+{% set buy_listing = best if best else amazon if amazon else (listings | first | default(None)) %}
+
+<div class="card mb-3 shadow-sm">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-md-5">
+        <a href="/product/{{ p.slug }}" class="text-decoration-none">
+          <h5 class="mb-1 h6">{{ p.name }}</h5>
+        </a>
+        <p class="text-muted small mb-0">{{ p.description }}</p>
+      </div>
+      <div class="col-md-4">
+        <div class="row text-center">
+          {% for l in listings %}
+          <div class="col small {% if best and l.retailer == best.retailer %}fw-bold text-success{% else %}text-muted{% endif %}">
+            {{ l.retailer.replace("_"," ").title() }}<br>
+            {% if l.price %}${{ "%.2f"|format(l.price) }}{% else %}—{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-3 text-end">
+        <a href="/product/{{ p.slug }}" class="btn btn-sm btn-outline-secondary me-1">Compare</a>
+        {% if buy_listing and buy_listing.affiliate_url %}
+        <a href="{{ buy_listing.affiliate_url }}" class="btn btn-sm btn-danger"
+           target="_blank" rel="nofollow">Buy →</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% if guide.tips %}
+<div class="mt-5 p-4 bg-light rounded">
+  <h2 class="h5 mb-3">What to Know Before You Buy</h2>
+  <ul class="mb-0">
+    {% for tip in guide.tips %}
+    <li class="mb-2">{{ tip }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<p class="small text-muted mt-4">
+  Prices updated daily. As an affiliate we may earn a commission from qualifying purchases at no extra cost to you.
+</p>
+{% endblock %}

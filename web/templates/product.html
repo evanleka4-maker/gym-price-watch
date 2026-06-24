@@ -97,23 +97,6 @@
     </div>
     {% endif %}
 
-    <!-- Price drop alert -->
-    <div class="card mt-3">
-      <div class="card-body">
-        <h6 class="card-title mb-1">Get Price Drop Alerts</h6>
-        <p class="small text-muted mb-2">We'll email you when this drops in price.</p>
-        <form action="/subscribe" method="POST">
-          <input type="hidden" name="product" value="{{ product.name }}">
-          <div class="mb-2">
-            <input type="email" name="email" class="form-control form-control-sm"
-                   placeholder="your@email.com" required>
-          </div>
-          <button type="submit" class="btn btn-outline-danger btn-sm w-100">
-            Notify Me
-          </button>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 
