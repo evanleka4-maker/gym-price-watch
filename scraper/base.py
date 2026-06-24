@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import re
 import time
 import random
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 HEADERS = {
@@ -20,7 +22,7 @@ def fetch(url, retries=2):
     for attempt in range(retries):
         try:
             time.sleep(random.uniform(2, 4))
-            resp = requests.get(url, headers=HEADERS, timeout=(8, 20))
+            resp = requests.get(url, headers=HEADERS, timeout=(8, 20), verify=False)
             resp.raise_for_status()
             if len(resp.text) < 500:
                 print(f"  [BLOCK] {url} — response too short, likely blocked")

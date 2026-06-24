@@ -43,9 +43,9 @@ CATALOG = [
         "category": "Barbells",
         "description": "Compare power bar prices across Rogue, Titan, and Rep Fitness. Aggressive knurl, stiff shaft, IPF approved.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/ohio-power-bar",
+            "rogue":        "https://www.roguefitness.com/the-ohio-power-bar",
             "titan":        "https://www.titanfitness.com/products/texas-power-bar",
-            "rep_fitness":  "https://repfitness.com/products/rep-power-bar",
+            "rep_fitness":  "https://repfitness.com/products/power-bar",
         }
     },
     {
@@ -54,7 +54,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "Compare power rack prices across Rogue, Titan, and Rep Fitness. All 3x3 11-gauge steel.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/rogue-rm-4-monster-lite-rack",
+            "rogue":        "https://www.roguefitness.com/rogue-rm-6-monster-rack",
             "titan":        "https://www.titanfitness.com/products/t-3-power-rack",
             "rep_fitness":  "https://repfitness.com/products/pr-4000-power-rack",
         }
@@ -208,7 +208,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "29mm power bar, dual knurl, 200k PSI tensile strength.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/rep-power-bar",
+            "rep_fitness": "https://repfitness.com/products/power-bar",
         }
     },
     {
@@ -217,7 +217,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "Multi-purpose 20kg Olympic bar. Great entry-level bar.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/rep-apache-bar",
+            "rep_fitness": "https://repfitness.com/products/apache-bar",
         }
     },
     {
@@ -658,8 +658,9 @@ def seed():
         for retailer, url in item["retailers"].items():
             aff_url = affiliate_url(retailer, url)
             c.execute("""
-                INSERT OR IGNORE INTO retailer_listings (product_id, retailer, url, affiliate_url)
+                INSERT INTO retailer_listings (product_id, retailer, url, affiliate_url)
                 VALUES (?, ?, ?, ?)
+                ON CONFLICT(product_id, retailer) DO UPDATE SET url=excluded.url, affiliate_url=excluded.affiliate_url
             """, (product_id, retailer, url, aff_url))
 
     conn.commit()
