@@ -20,6 +20,11 @@ def inject_globals():
     }
 
 
+@app.route("/googleaabca5936e2a4a7d.html")
+def google_verify():
+    return "google-site-verification: googleaabca5936e2a4a7d.html"
+
+
 @app.route("/")
 def index():
     deals = get_best_deals(limit=6)
