@@ -52,7 +52,7 @@ CATALOG = [
         "description": "Compare power rack prices across Rogue, Titan, and Rep Fitness. All 3x3 11-gauge steel.",
         "retailers": {
             "titan":        "https://www.titanfitness.com/products/t-3-series-power-rack-82-24",
-            "rep_fitness":  "https://repfitness.com/products/pr-5000-power-rack",
+            "rep_fitness":  "https://repfitness.com/products/pr-5000-power-rack-pre-selected",
         }
     },
     {
@@ -94,7 +94,7 @@ CATALOG = [
         "retailers": {
             "rogue":        "https://www.roguefitness.com/safety-squat-bar",
             "titan":        "https://www.titanfitness.com/products/safety-squat-olympic-bar",
-            "rep_fitness":  "https://repfitness.com/products/safety-squat-olympic-bar",
+            "rep_fitness":  "https://repfitness.com/products/safety-squat-bar",
         }
     },
     {
@@ -133,7 +133,6 @@ CATALOG = [
         "description": "Compare knee sleeve prices across Rogue and Rep Fitness. Both 7mm neoprene, sold in pairs.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-knee-sleeves",
-            "rep_fitness":  "https://repfitness.com/products/knee-sleeves",
         }
     },
     {
@@ -172,7 +171,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "15kg women's Olympic barbell. 25mm diameter, dual knurl marks.",
         "retailers": {
-            "rogue": "https://www.roguefitness.com/the-bella-bar-2-0",
+            "rogue": "https://www.roguefitness.com/bella-bar",
         }
     },
     {
@@ -199,7 +198,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "29mm power bar, dual knurl, 200k PSI tensile strength.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/power-bar",
+            "rep_fitness": "https://repfitness.com/products/black-diamond-power-bar",
         }
     },
     {
@@ -238,7 +237,7 @@ CATALOG = [
         "description": "Padded yoke SSB. Compare pricing vs Rogue on the same movement.",
         "retailers": {
             "titan": "https://www.titanfitness.com/products/safety-squat-olympic-bar",
-            "rep_fitness": "https://repfitness.com/products/safety-squat-olympic-bar",
+            "rep_fitness": "https://repfitness.com/products/safety-squat-bar",
         }
     },
     {
@@ -267,7 +266,7 @@ CATALOG = [
         "description": "Neutral grip pressing bar. Easier on shoulders than straight bar.",
         "retailers": {
             "titan": "https://www.titanfitness.com/products/multi-grip-barbell-v3",
-            "rep_fitness": "https://repfitness.com/products/rep-multi-grip-bar",
+            "rep_fitness": "https://repfitness.com/products/cambered-swiss-multi-grip-barbell",
         }
     },
 
@@ -391,7 +390,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "Rep's top-of-the-line rack. 1000lb rated, massive attachment ecosystem.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/pr-5000-power-rack",
+            "rep_fitness": "https://repfitness.com/products/pr-5000-power-rack-pre-selected",
         }
     },
     {
@@ -606,7 +605,6 @@ CATALOG = [
         "description": "7mm neoprene knee sleeves. Sold in pairs.",
         "retailers": {
             "rogue": "https://www.roguefitness.com/rogue-knee-sleeves",
-            "rep_fitness": "https://repfitness.com/products/rep-knee-sleeves",
         }
     },
     {
