@@ -33,7 +33,7 @@ CATALOG = [
         "retailers": {
             "rogue":        "https://www.roguefitness.com/the-ohio-bar",
             "titan":        "https://www.titanfitness.com/products/performance-series-olympic-barbell",
-            "fringe":       "https://www.fringesport.com/products/wonder-bar-olympic-barbell",
+            "fringe":       "https://www.fringesport.com/products/mens-olympic-wonder-barbell-20kg",
         }
     },
     {
@@ -64,7 +64,7 @@ CATALOG = [
             "rogue":        "https://www.roguefitness.com/rogue-hg-2-0-bumper-plates",
             "titan":        "https://www.titanfitness.com/products/lb-economy-black-bumper-plates",
             "rep_fitness":  "https://repfitness.com/products/rep-black-bumper-plates",
-            "fringe":       "https://www.fringesport.com/products/bumper-plates",
+            "fringe":       "https://www.fringesport.com/products/savage-bumper-plate-pairs",
         }
     },
     {
@@ -216,7 +216,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "Affordable all-purpose 20kg barbell. Best bang-for-buck entry bar.",
         "retailers": {
-            "fringe": "https://www.fringesport.com/products/wonder-bar-olympic-barbell",
+            "fringe": "https://www.fringesport.com/products/mens-olympic-wonder-barbell-20kg",
         }
     },
 
@@ -304,7 +304,7 @@ CATALOG = [
         "category": "Bumper Plates",
         "description": "Color-coded virgin rubber bumpers. Sold in pairs.",
         "retailers": {
-            "fringe": "https://www.fringesport.com/products/bumper-plates",
+            "fringe": "https://www.fringesport.com/products/savage-bumper-plate-pairs",
         }
     },
     {
@@ -399,7 +399,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "Budget squat stand for smaller spaces. No spotter arms included.",
         "retailers": {
-            "fringe": "https://www.fringesport.com/products/squat-stand",
+            "fringe": "https://www.fringesport.com/products/squat-rack-with-pullup-bar-by-onefitwonder-life-series",
         }
     },
 
@@ -475,7 +475,7 @@ CATALOG = [
         "category": "Dumbbells",
         "description": "Premium urethane coated dumbbells. Set of 5-50lb.",
         "retailers": {
-            "fringe": "https://www.fringesport.com/products/urethane-dumbbells",
+            "fringe": "https://www.fringesport.com/products/silverback-rubber-dumbbells-complete-set-5lb-50lb",
         }
     },
 
@@ -504,7 +504,7 @@ CATALOG = [
         "category": "Kettlebells",
         "description": "Single cast iron kettlebell. Color-coded by weight.",
         "retailers": {
-            "fringe": "https://www.fringesport.com/products/kettlebells-by-fringesport",
+            "fringe": "https://www.fringesport.com/products/prime-kettlebells-by-fringe-sport",
         }
     },
 
@@ -516,7 +516,6 @@ CATALOG = [
         "description": "The gold standard rowing machine. Used in gyms and competitions worldwide.",
         "retailers": {
             "rogue": "https://www.roguefitness.com/concept2-model-d-rower",
-            "fringe": "https://www.fringesport.com/products/concept2-model-d-rower",
         }
     },
     {
