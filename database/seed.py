@@ -33,7 +33,6 @@ CATALOG = [
         "retailers": {
             "rogue":        "https://www.roguefitness.com/the-ohio-bar",
             "titan":        "https://www.titanfitness.com/products/olympic-weightlifting-bar",
-            "rep_fitness":  "https://repfitness.com/products/apache-bar",
             "fringe":       "https://www.fringesport.com/products/wonder-bar-olympic-barbell",
         }
     },
@@ -43,9 +42,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "Compare power bar prices across Rogue, Titan, and Rep Fitness. Aggressive knurl, stiff shaft, IPF approved.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/the-ohio-power-bar",
             "titan":        "https://www.titanfitness.com/products/texas-power-bar",
-            "rep_fitness":  "https://repfitness.com/products/power-bar",
         }
     },
     {
@@ -54,8 +51,8 @@ CATALOG = [
         "category": "Power Racks",
         "description": "Compare power rack prices across Rogue, Titan, and Rep Fitness. All 3x3 11-gauge steel.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/rogue-rm-6-monster-rack",
             "titan":        "https://www.titanfitness.com/products/t-3-power-rack",
+            "rep_fitness":  "https://repfitness.com/products/pr-5000-power-rack",
         }
     },
     {
@@ -76,9 +73,7 @@ CATALOG = [
         "category": "Benches",
         "description": "Compare flat bench prices across Rogue, Titan, and Rep Fitness. All rated 1000lb+.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/utility-bench-2-0",
             "titan":        "https://www.titanfitness.com/products/competition-flat-bench",
-            "rep_fitness":  "https://repfitness.com/products/fb-5000",
         }
     },
     {
@@ -120,8 +115,6 @@ CATALOG = [
         "description": "Compare kettlebell prices across Rogue, Rep Fitness, and FringeSport.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-kettlebells",
-            "rep_fitness":  "https://repfitness.com/products/cast-iron-kettlebells",
-            "fringe":       "https://www.fringesport.com/products/kettlebells-by-fringesport",
         }
     },
     {
@@ -131,7 +124,6 @@ CATALOG = [
         "description": "Compare Concept2 Model D rower prices across Rogue and FringeSport. Same product, different prices.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/concept2-model-d-rower",
-            "fringe":       "https://www.fringesport.com/products/concept2-model-d-rower",
         }
     },
     {
@@ -141,7 +133,7 @@ CATALOG = [
         "description": "Compare knee sleeve prices across Rogue and Rep Fitness. Both 7mm neoprene, sold in pairs.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-knee-sleeves",
-            "rep_fitness":  "https://repfitness.com/products/rep-knee-sleeves",
+            "rep_fitness":  "https://repfitness.com/products/knee-sleeves",
         }
     },
     {
@@ -180,7 +172,7 @@ CATALOG = [
         "category": "Barbells",
         "description": "15kg women's Olympic barbell. 25mm diameter, dual knurl marks.",
         "retailers": {
-            "rogue": "https://www.roguefitness.com/bella-bar-2-0",
+            "rogue": "https://www.roguefitness.com/the-bella-bar-2-0",
         }
     },
     {

@@ -1,29 +1,15 @@
-import ssl
-import requests
-from requests.adapters import HTTPAdapter
+import urllib3
 from bs4 import BeautifulSoup
 import re
 import time
 import random
-import urllib3
+import json
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-ssl._create_default_https_context = ssl._create_unverified_context
 
-
-class _NoVerifyAdapter(HTTPAdapter):
-    def init_poolmanager(self, *args, **kwargs):
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-        kwargs['ssl_context'] = ctx
-        return super().init_poolmanager(*args, **kwargs)
-
-
-_session = requests.Session()
-_session.mount('https://', _NoVerifyAdapter())
-_session.mount('http://', HTTPAdapter())
-
+# Use urllib3 directly so cert_reqs='CERT_NONE' bypasses SSL at the lowest level.
+# requests + adapters + verify=False was not bypassing Titan's expired cert on Railway.
+_http = urllib3.PoolManager(cert_reqs='CERT_NONE', assert_hostname=False)
 
 HEADERS = {
     "User-Agent": (
@@ -40,12 +26,19 @@ def fetch(url, retries=2):
     for attempt in range(retries):
         try:
             time.sleep(random.uniform(2, 4))
-            resp = _session.get(url, headers=HEADERS, timeout=(8, 20))
-            resp.raise_for_status()
-            if len(resp.text) < 500:
+            resp = _http.request(
+                'GET', url,
+                headers=HEADERS,
+                timeout=urllib3.Timeout(connect=8, read=20),
+                redirect=True,
+            )
+            if resp.status >= 400:
+                raise Exception(f"{resp.status} Client Error: Not Found for url: {url}")
+            html = resp.data.decode('utf-8', errors='replace')
+            if len(html) < 500:
                 print(f"  [BLOCK] {url} — response too short, likely blocked")
                 return None
-            return BeautifulSoup(resp.text, "lxml")
+            return BeautifulSoup(html, "lxml")
         except Exception as e:
             if attempt == retries - 1:
                 print(f"  [FAIL] {url} — {e}")
@@ -65,7 +58,6 @@ def extract_price(text):
 
 
 def json_ld_price(soup):
-    import json
     for tag in soup.find_all("script", type="application/ld+json"):
         try:
             data = json.loads(tag.string or "")
