@@ -33,7 +33,7 @@ CATALOG = [
         "retailers": {
             "rogue":        "https://www.roguefitness.com/the-ohio-bar",
             "titan":        "https://www.titanfitness.com/products/olympic-weightlifting-bar",
-            "rep_fitness":  "https://repfitness.com/products/rep-apache-bar",
+            "rep_fitness":  "https://repfitness.com/products/apache-bar",
             "fringe":       "https://www.fringesport.com/products/wonder-bar-olympic-barbell",
         }
     },
@@ -56,7 +56,6 @@ CATALOG = [
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-rm-6-monster-rack",
             "titan":        "https://www.titanfitness.com/products/t-3-power-rack",
-            "rep_fitness":  "https://repfitness.com/products/pr-4000-power-rack",
         }
     },
     {
@@ -68,7 +67,7 @@ CATALOG = [
             "rogue":        "https://www.roguefitness.com/rogue-hg-2-0-bumper-plates",
             "titan":        "https://www.titanfitness.com/products/competition-bumper-plates",
             "rep_fitness":  "https://repfitness.com/products/rep-black-bumper-plates",
-            "fringe":       "https://www.fringesport.com/products/color-bumper-plates-by-fringesport",
+            "fringe":       "https://www.fringesport.com/products/bumper-plates",
         }
     },
     {
@@ -77,9 +76,9 @@ CATALOG = [
         "category": "Benches",
         "description": "Compare flat bench prices across Rogue, Titan, and Rep Fitness. All rated 1000lb+.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/rogue-utility-bench-2-0",
+            "rogue":        "https://www.roguefitness.com/utility-bench-2-0",
             "titan":        "https://www.titanfitness.com/products/competition-flat-bench",
-            "rep_fitness":  "https://repfitness.com/products/rep-flat-bench-fb-5000",
+            "rep_fitness":  "https://repfitness.com/products/fb-5000",
         }
     },
     {
@@ -98,9 +97,9 @@ CATALOG = [
         "category": "Specialty Bars",
         "description": "Compare safety squat bar prices across Rogue, Titan, and Rep Fitness.",
         "retailers": {
-            "rogue":        "https://www.roguefitness.com/rogue-safety-squat-bar",
+            "rogue":        "https://www.roguefitness.com/safety-squat-bar",
             "titan":        "https://www.titanfitness.com/products/safety-squat-bar",
-            "rep_fitness":  "https://repfitness.com/products/rep-safety-squat-bar",
+            "rep_fitness":  "https://repfitness.com/products/safety-squat-bar",
         }
     },
     {
@@ -121,7 +120,7 @@ CATALOG = [
         "description": "Compare kettlebell prices across Rogue, Rep Fitness, and FringeSport.",
         "retailers": {
             "rogue":        "https://www.roguefitness.com/rogue-kettlebells",
-            "rep_fitness":  "https://repfitness.com/products/rep-cast-iron-kettlebells",
+            "rep_fitness":  "https://repfitness.com/products/cast-iron-kettlebells",
             "fringe":       "https://www.fringesport.com/products/kettlebells-by-fringesport",
         }
     },
@@ -237,7 +236,7 @@ CATALOG = [
         "category": "Specialty Bars",
         "description": "Camber bar with padded yoke. Reduces shoulder strain during squats.",
         "retailers": {
-            "rogue": "https://www.roguefitness.com/rogue-safety-squat-bar",
+            "rogue": "https://www.roguefitness.com/safety-squat-bar",
         }
     },
     {
@@ -247,7 +246,7 @@ CATALOG = [
         "description": "Padded yoke SSB. Compare pricing vs Rogue on the same movement.",
         "retailers": {
             "titan": "https://www.titanfitness.com/products/safety-squat-bar",
-            "rep_fitness": "https://repfitness.com/products/rep-safety-squat-bar",
+            "rep_fitness": "https://repfitness.com/products/safety-squat-bar",
         }
     },
     {
@@ -314,7 +313,7 @@ CATALOG = [
         "category": "Bumper Plates",
         "description": "Color-coded virgin rubber bumpers. Sold in pairs.",
         "retailers": {
-            "fringe": "https://www.fringesport.com/products/color-bumper-plates-by-fringesport",
+            "fringe": "https://www.fringesport.com/products/bumper-plates",
         }
     },
     {
@@ -391,7 +390,7 @@ CATALOG = [
         "category": "Power Racks",
         "description": "3x3 11-gauge modular rack. Tons of attachments available.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/pr-4000-power-rack",
+            "rep_fitness": "https://repfitness.com/products/pr-4000",
         }
     },
     {
@@ -420,7 +419,7 @@ CATALOG = [
         "category": "Benches",
         "description": "Heavy-duty flat utility bench. 1000lb capacity.",
         "retailers": {
-            "rogue": "https://www.roguefitness.com/rogue-utility-bench-2-0",
+            "rogue": "https://www.roguefitness.com/utility-bench-2-0",
         }
     },
     {
@@ -438,7 +437,7 @@ CATALOG = [
         "category": "Benches",
         "description": "Commercial-grade flat bench. IPF competition spec.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/rep-flat-bench-fb-5000",
+            "rep_fitness": "https://repfitness.com/products/fb-5000",
         }
     },
     {
@@ -505,7 +504,7 @@ CATALOG = [
         "category": "Kettlebells",
         "description": "Single-piece cast iron, powder coated. Multiple weights.",
         "retailers": {
-            "rep_fitness": "https://repfitness.com/products/rep-cast-iron-kettlebells",
+            "rep_fitness": "https://repfitness.com/products/cast-iron-kettlebells",
         }
     },
     {

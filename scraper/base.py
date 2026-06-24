@@ -1,10 +1,13 @@
+import ssl
 import requests
 from bs4 import BeautifulSoup
 import re
 import time
 import random
 import urllib3
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 HEADERS = {
