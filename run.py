@@ -22,6 +22,8 @@ def start_server():
     init_db()
 
     scheduler = BackgroundScheduler()
+    # Run immediately on startup so prices populate right away
+    scheduler.add_job(run_all, trigger="date", id="initial_scrape")
     scheduler.add_job(
         run_all,
         trigger="interval",
@@ -30,7 +32,7 @@ def start_server():
         replace_existing=True,
     )
     scheduler.start()
-    print(f"Scheduler running — prices will update every {SCRAPE_INTERVAL_HOURS}h.")
+    print(f"Scheduler running — scraping now, then every {SCRAPE_INTERVAL_HOURS}h.")
 
     try:
         port = int(os.environ.get("PORT", 5001))

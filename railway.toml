@@ -2,5 +2,5 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python3 run.py seed && python3 run.py scrape && python3 run.py"
+startCommand = "python3 run.py seed && python3 run.py"
 restartPolicyType = "on_failure"
