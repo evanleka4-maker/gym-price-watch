@@ -1,74 +1,50 @@
 """
-Sends emails via Gmail SMTP.
-Requires env vars: GMAIL_USER, GMAIL_APP_PASSWORD
-Get an app password at: myaccount.google.com/apppasswords
+Notifications via ntfy.sh — no account or signup needed.
+Set NTFY_TOPIC in Railway env vars to whatever unique string you want.
+Then visit https://ntfy.sh/YOUR_TOPIC to subscribe on any device.
 """
-import smtplib
 import os
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import requests
 
-GMAIL_USER = os.getenv("GMAIL_USER", "")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
-NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL", GMAIL_USER)
+NTFY_TOPIC = os.getenv("NTFY_TOPIC", "gympricewatch-evanleka")
+NTFY_URL = f"https://ntfy.sh/{NTFY_TOPIC}"
 
 
-def _send(to, subject, body_html):
-    if not GMAIL_USER or not GMAIL_APP_PASSWORD:
-        print(f"[email] No credentials set — skipping: {subject}")
-        return False
+def _notify(title, message, priority="default", tags=None):
     try:
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = subject
-        msg["From"] = GMAIL_USER
-        msg["To"] = to
-        msg.attach(MIMEText(body_html, "html"))
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(GMAIL_USER, GMAIL_APP_PASSWORD)
-            server.sendmail(GMAIL_USER, to, msg.as_string())
-        return True
+        headers = {
+            "Title": title,
+            "Priority": priority,
+            "Tags": ",".join(tags or []),
+        }
+        requests.post(NTFY_URL, data=message.encode("utf-8"),
+                      headers=headers, timeout=5)
     except Exception as e:
-        print(f"[email] Failed: {e}")
-        return False
+        print(f"[notify] Failed: {e}")
 
 
 def notify_new_subscriber(email, product_name):
-    _send(
-        NOTIFY_EMAIL,
-        f"New price alert signup: {product_name}",
-        f"<p><b>{email}</b> signed up for price alerts on <b>{product_name}</b>.</p>"
-        f"<p>Total subscribers growing. Keep driving traffic.</p>"
+    _notify(
+        title=f"New signup: {product_name}",
+        message=f"{email} wants price alerts on {product_name}.",
+        priority="high",
+        tags=["bell", "moneybag"],
     )
 
 
 def send_reddit_digest(opportunities):
     if not opportunities:
         return
-    rows = ""
+    lines = []
     for o in opportunities:
-        rows += f"""
-        <tr>
-          <td style="padding:12px;border-bottom:1px solid #eee;">
-            <b><a href="{o['url']}">{o['title']}</a></b><br>
-            <span style="color:#888;font-size:13px;">r/{o['subreddit']} · {o['score']} upvotes</span><br><br>
-            <b>Suggested reply:</b><br>
-            <div style="background:#f5f5f5;padding:10px;border-radius:4px;font-size:13px;">
-              {o['suggested_reply']}
-            </div>
-          </td>
-        </tr>"""
+        lines.append(f"• {o['title']}")
+        lines.append(f"  {o['url']}")
+        lines.append(f"  Reply: {o['suggested_reply'][:120]}...")
+        lines.append("")
 
-    html = f"""
-    <h2 style="font-family:sans-serif;">GymPriceWatch — Reddit Opportunities</h2>
-    <p style="font-family:sans-serif;color:#555;">
-      {len(opportunities)} posts found where you can naturally drop the site.
-      Copy-paste the suggested reply, or edit it to sound more like you.
-    </p>
-    <table style="width:100%;font-family:sans-serif;border-collapse:collapse;">
-      {rows}
-    </table>
-    <p style="font-family:sans-serif;color:#aaa;font-size:12px;">
-      GymPriceWatch daily digest
-    </p>"""
-
-    _send(NOTIFY_EMAIL, f"Reddit opportunities ({len(opportunities)} found)", html)
+    _notify(
+        title=f"Reddit: {len(opportunities)} opportunities found",
+        message="\n".join(lines),
+        priority="default",
+        tags=["reddit"],
+    )
