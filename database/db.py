@@ -83,31 +83,38 @@ def get_product_by_slug(slug):
         conn.close()
         return None
     listings = get_listings_with_latest_price(p["id"], conn)
-    history = get_price_history(p["id"], conn)
     conn.close()
-    return {"product": dict(p), "listings": listings, "history": history}
+    return {"product": dict(p), "listings": listings, "history": []}
 
 
-def get_listings_with_latest_price(product_id, conn):
+def get_listings_with_latest_price(product_id, conn=None):
     from config import AFFILIATE_IDS
+    from scraper.cache import get_price
+
+    close_conn = conn is None
+    if close_conn:
+        conn = get_conn()
+
     rows = conn.execute("""
-        SELECT rl.retailer, rl.url,
-               ph.price, ph.in_stock, ph.scraped_at
+        SELECT rl.id, rl.retailer, rl.url
         FROM retailer_listings rl
-        LEFT JOIN price_history ph ON ph.listing_id = rl.id
-            AND ph.id = (
-                SELECT id FROM price_history
-                WHERE listing_id = rl.id
-                ORDER BY scraped_at DESC LIMIT 1
-            )
         WHERE rl.product_id = ?
-        ORDER BY ph.price ASC
     """, (product_id,)).fetchall()
+
+    if close_conn:
+        conn.close()
+
     result = []
     for r in rows:
         row = dict(r)
+        cached = get_price(row["id"])
+        row["price"] = cached["price"]
+        row["in_stock"] = cached["in_stock"]
+        row["scraped_at"] = cached["scraped_at"]
         row["affiliate_url"] = _build_affiliate_url(row["retailer"], row["url"], AFFILIATE_IDS)
         result.append(row)
+
+    result.sort(key=lambda x: (x["price"] is None, x["price"] or 0))
     return result
 
 
@@ -174,26 +181,26 @@ def search_products(query):
 
 def get_best_deals(limit=6):
     from config import AFFILIATE_IDS
+    from scraper.cache import get_price
+
     conn = get_conn()
     rows = conn.execute("""
         SELECT p.slug, p.name, p.category, p.image_url,
-               rl.retailer, rl.url, ph.price
-        FROM price_history ph
-        JOIN retailer_listings rl ON ph.listing_id = rl.id
+               rl.id as listing_id, rl.retailer, rl.url
+        FROM retailer_listings rl
         JOIN products p ON rl.product_id = p.id
-        WHERE ph.id = (
-            SELECT id FROM price_history
-            WHERE listing_id = rl.id
-            ORDER BY scraped_at DESC LIMIT 1
-        )
-        AND ph.price IS NOT NULL
-        ORDER BY ph.price ASC
-        LIMIT ?
-    """, (limit,)).fetchall()
+    """).fetchall()
     conn.close()
-    result = []
+
+    deals = []
     for r in rows:
         row = dict(r)
+        cached = get_price(row["listing_id"])
+        if cached["price"] is None:
+            continue
+        row["price"] = cached["price"]
         row["affiliate_url"] = _build_affiliate_url(row["retailer"], row["url"], AFFILIATE_IDS)
-        result.append(row)
-    return result
+        deals.append(row)
+
+    deals.sort(key=lambda x: x["price"])
+    return deals[:limit]
