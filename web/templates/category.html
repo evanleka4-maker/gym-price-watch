@@ -49,13 +49,15 @@
 
     <!-- Retailer mini-prices -->
     <div class="row mt-2 pt-2 border-top">
-      {% for l in listings %}
+      {% for l in listings if l.retailer != "amazon" %}
       <div class="col text-center small {% if best and l.retailer == best.retailer %}fw-bold text-success{% else %}text-muted{% endif %}">
         {{ l.retailer.replace("_"," ").title() }}<br>
         {% if l.price %}
-          ${{ "%.2f"|format(l.price) }}
+          <a href="{{ l.affiliate_url }}" class="{% if best and l.retailer == best.retailer %}text-success{% else %}text-muted{% endif %} text-decoration-none" target="_blank" rel="nofollow">
+            ${{ "%.2f"|format(l.price) }}
+          </a>
         {% else %}
-          —
+          <a href="{{ l.affiliate_url }}" class="text-muted text-decoration-none small" target="_blank" rel="nofollow">check →</a>
         {% endif %}
       </div>
       {% endfor %}

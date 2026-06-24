@@ -16,18 +16,21 @@ HEADERS = {
 }
 
 
-def fetch(url, retries=3):
+def fetch(url, retries=2):
     for attempt in range(retries):
         try:
-            time.sleep(random.uniform(1.5, 3.5))
-            resp = requests.get(url, headers=HEADERS, timeout=15)
+            time.sleep(random.uniform(2, 4))
+            resp = requests.get(url, headers=HEADERS, timeout=(8, 20))
             resp.raise_for_status()
+            if len(resp.text) < 500:
+                print(f"  [BLOCK] {url} — response too short, likely blocked")
+                return None
             return BeautifulSoup(resp.text, "lxml")
         except Exception as e:
             if attempt == retries - 1:
                 print(f"  [FAIL] {url} — {e}")
                 return None
-            time.sleep(2 ** attempt)
+            time.sleep(3)
     return None
 
 
