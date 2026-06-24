@@ -15,6 +15,8 @@
 {% set p = item.product %}
 {% set listings = item.listings %}
 {% set best = listings | selectattr("price") | sort(attribute="price") | first | default(None) %}
+{% set amazon = listings | selectattr("retailer", "equalto", "amazon") | first | default(None) %}
+{% set any_listing = listings | first | default(None) %}
 
 <div class="card mb-3 shadow-sm">
   <div class="card-body">
@@ -37,6 +39,10 @@
         <a href="/product/{{ p.slug }}" class="btn btn-sm btn-outline-secondary me-1">Compare</a>
         {% if best and best.affiliate_url %}
           <a href="{{ best.affiliate_url }}" class="btn btn-sm btn-danger" target="_blank" rel="nofollow">Buy →</a>
+        {% elif amazon and amazon.affiliate_url %}
+          <a href="{{ amazon.affiliate_url }}" class="btn btn-sm btn-danger" target="_blank" rel="nofollow">Buy on Amazon →</a>
+        {% elif any_listing and any_listing.affiliate_url %}
+          <a href="{{ any_listing.affiliate_url }}" class="btn btn-sm btn-danger" target="_blank" rel="nofollow">Buy →</a>
         {% endif %}
       </div>
     </div>

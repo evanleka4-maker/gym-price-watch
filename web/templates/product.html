@@ -78,13 +78,19 @@
 
     <!-- Best deal CTA -->
     {% set best = listings | selectattr("price") | sort(attribute="price") | first | default(None) %}
-    {% if best and best.price %}
+    {% set amazon = listings | selectattr("retailer", "equalto", "amazon") | first | default(None) %}
+    {% set buy_listing = best if best else amazon if amazon else (listings | first | default(None)) %}
+    {% if buy_listing and buy_listing.affiliate_url %}
     <div class="card border-success">
       <div class="card-body text-center">
         <div class="small text-muted mb-1">Best price today</div>
-        <div class="display-6 fw-bold text-success">${{ "%.2f"|format(best.price) }}</div>
-        <div class="small text-muted mb-3">at {{ best.retailer.replace("_"," ").title() }}</div>
-        <a href="{{ best.affiliate_url }}" class="btn btn-danger w-100" target="_blank" rel="nofollow">
+        {% if buy_listing.price %}
+        <div class="display-6 fw-bold text-success">${{ "%.2f"|format(buy_listing.price) }}</div>
+        {% else %}
+        <div class="h5 text-muted mb-1">Price not tracked yet</div>
+        {% endif %}
+        <div class="small text-muted mb-3">at {{ buy_listing.retailer.replace("_"," ").title() }}</div>
+        <a href="{{ buy_listing.affiliate_url }}" class="btn btn-danger w-100" target="_blank" rel="nofollow">
           Get This Deal →
         </a>
       </div>
