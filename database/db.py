@@ -39,6 +39,15 @@ def init_db():
     """)
 
     c.execute("""
+        CREATE TABLE IF NOT EXISTS subscribers (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT NOT NULL,
+            product TEXT,
+            signed_up_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
+    c.execute("""
         CREATE TABLE IF NOT EXISTS price_history (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             listing_id INTEGER NOT NULL,
@@ -141,6 +150,16 @@ def get_price_history(product_id, conn):
         ORDER BY ph.scraped_at ASC
     """, (product_id,)).fetchall()
     return [dict(r) for r in rows]
+
+
+def save_subscriber(email, product=""):
+    conn = get_conn()
+    conn.execute(
+        "INSERT INTO subscribers (email, product) VALUES (?, ?)",
+        (email, product)
+    )
+    conn.commit()
+    conn.close()
 
 
 def save_price(listing_id, price, in_stock=True):

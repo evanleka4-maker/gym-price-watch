@@ -2,10 +2,11 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from database.db import (
     get_all_categories, get_products_by_category,
-    get_product_by_slug, search_products, get_best_deals
+    get_product_by_slug, search_products, get_best_deals,
+    save_subscriber
 )
 from config import SITE_NAME, SITE_TAGLINE
 
@@ -98,6 +99,17 @@ def product(slug):
         chart_labels=chart_labels,
         chart_datasets=chart_datasets,
     )
+
+
+@app.route("/subscribe", methods=["POST"])
+def subscribe():
+    email = request.form.get("email", "").strip()
+    product = request.form.get("product", "").strip()
+    if email:
+        save_subscriber(email, product)
+        from web.emailer import notify_new_subscriber
+        notify_new_subscriber(email, product)
+    return redirect(request.referrer or "/")
 
 
 @app.route("/search")
