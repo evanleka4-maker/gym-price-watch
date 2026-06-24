@@ -4,12 +4,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from database.db import get_all_listings
 from scraper import cache
-from scraper import rogue, titan, rep_fitness
+from scraper import rogue, titan, rep_fitness, fringe
 
 SCRAPERS = {
     "rogue": rogue.scrape_price,
     "titan": titan.scrape_price,
     "rep_fitness": rep_fitness.scrape_price,
+    "fringe": fringe.scrape_price,
 }
 
 
