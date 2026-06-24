@@ -89,8 +89,9 @@ def get_product_by_slug(slug):
 
 
 def get_listings_with_latest_price(product_id, conn):
+    from config import AFFILIATE_IDS
     rows = conn.execute("""
-        SELECT rl.retailer, rl.affiliate_url,
+        SELECT rl.retailer, rl.url,
                ph.price, ph.in_stock, ph.scraped_at
         FROM retailer_listings rl
         LEFT JOIN price_history ph ON ph.listing_id = rl.id
@@ -102,7 +103,26 @@ def get_listings_with_latest_price(product_id, conn):
         WHERE rl.product_id = ?
         ORDER BY ph.price ASC
     """, (product_id,)).fetchall()
-    return [dict(r) for r in rows]
+    result = []
+    for r in rows:
+        row = dict(r)
+        row["affiliate_url"] = _build_affiliate_url(row["retailer"], row["url"], AFFILIATE_IDS)
+        result.append(row)
+    return result
+
+
+def _build_affiliate_url(retailer, url, affiliate_ids):
+    aid = affiliate_ids.get(retailer, "")
+    if not aid or aid.startswith("YOUR_"):
+        return url
+    if retailer == "rogue":
+        return f"{url}?ref={aid}"
+    if retailer in ("titan", "rep_fitness"):
+        return f"{url}?ref={aid}"
+    if retailer == "amazon":
+        sep = "&" if "?" in url else "?"
+        return f"{url}{sep}tag={aid}"
+    return url
 
 
 def get_price_history(product_id, conn):
@@ -153,10 +173,11 @@ def search_products(query):
 
 
 def get_best_deals(limit=6):
+    from config import AFFILIATE_IDS
     conn = get_conn()
     rows = conn.execute("""
         SELECT p.slug, p.name, p.category, p.image_url,
-               rl.retailer, rl.affiliate_url, ph.price
+               rl.retailer, rl.url, ph.price
         FROM price_history ph
         JOIN retailer_listings rl ON ph.listing_id = rl.id
         JOIN products p ON rl.product_id = p.id
@@ -170,4 +191,9 @@ def get_best_deals(limit=6):
         LIMIT ?
     """, (limit,)).fetchall()
     conn.close()
-    return [dict(r) for r in rows]
+    result = []
+    for r in rows:
+        row = dict(r)
+        row["affiliate_url"] = _build_affiliate_url(row["retailer"], row["url"], AFFILIATE_IDS)
+        result.append(row)
+    return result
