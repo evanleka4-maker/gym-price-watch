@@ -1,5 +1,6 @@
 import ssl
 import requests
+from requests.adapters import HTTPAdapter
 from bs4 import BeautifulSoup
 import re
 import time
@@ -8,6 +9,20 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ssl._create_default_https_context = ssl._create_unverified_context
+
+
+class _NoVerifyAdapter(HTTPAdapter):
+    def init_poolmanager(self, *args, **kwargs):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        kwargs['ssl_context'] = ctx
+        return super().init_poolmanager(*args, **kwargs)
+
+
+_session = requests.Session()
+_session.mount('https://', _NoVerifyAdapter())
+_session.mount('http://', HTTPAdapter())
 
 
 HEADERS = {
@@ -25,7 +40,7 @@ def fetch(url, retries=2):
     for attempt in range(retries):
         try:
             time.sleep(random.uniform(2, 4))
-            resp = requests.get(url, headers=HEADERS, timeout=(8, 20), verify=False)
+            resp = _session.get(url, headers=HEADERS, timeout=(8, 20))
             resp.raise_for_status()
             if len(resp.text) < 500:
                 print(f"  [BLOCK] {url} — response too short, likely blocked")
