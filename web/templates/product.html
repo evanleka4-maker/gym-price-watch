@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} — Best Price Comparison | {{ site_name }}{% endblock %}
+{% block meta_description %}Compare {{ product.name }} prices across Rogue, Titan, and Rep Fitness. Find the best deal updated daily.{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/category/{{ product.category }}">{{ product.category }}</a></li>
+    <li class="breadcrumb-item active">{{ product.name }}</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h2">{{ product.name }}</h1>
+    <p class="text-muted">{{ product.description }}</p>
+
+    <!-- Price comparison table -->
+    <h2 class="h5 mt-4 mb-3">Price Comparison</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Retailer</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Last Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set best_price = listings | selectattr("price") | map(attribute="price") | min | default(None) %}
+          {% for l in listings %}
+          <tr {% if l.price and l.price == best_price %}class="table-success"{% endif %}>
+            <td class="fw-semibold">{{ l.retailer.replace("_"," ").title() }}</td>
+            <td>
+              {% if l.price %}
+                <span class="price-tag">${{ "%.2f"|format(l.price) }}</span>
+                {% if l.price == best_price %}
+                  <span class="badge bg-success ms-1">Best Price</span>
+                {% endif %}
+              {% else %}
+                <span class="text-muted">Not tracked yet</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if l.in_stock == 1 %}
+                <span class="badge bg-success">In Stock</span>
+              {% elif l.in_stock == 0 %}
+                <span class="badge bg-danger">Out of Stock</span>
+              {% else %}
+                <span class="badge bg-secondary">Unknown</span>
+              {% endif %}
+            </td>
+            <td class="small text-muted">{{ (l.scraped_at or "Never")[:10] }}</td>
+            <td>
+              <a href="{{ l.affiliate_url }}" class="btn btn-sm btn-danger" target="_blank" rel="nofollow">
+                Shop at {{ l.retailer.replace("_"," ").title() }} →
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="small text-muted mt-2">
+      * Prices are updated daily. As an affiliate we may earn a commission from qualifying purchases at no extra cost to you.
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    {% if product.image_url %}
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="img-fluid rounded mb-3">
+    {% endif %}
+
+    <!-- Best deal CTA -->
+    {% set best = listings | selectattr("price") | sort(attribute="price") | first | default(None) %}
+    {% if best and best.price %}
+    <div class="card border-success">
+      <div class="card-body text-center">
+        <div class="small text-muted mb-1">Best price today</div>
+        <div class="display-6 fw-bold text-success">${{ "%.2f"|format(best.price) }}</div>
+        <div class="small text-muted mb-3">at {{ best.retailer.replace("_"," ").title() }}</div>
+        <a href="{{ best.affiliate_url }}" class="btn btn-danger w-100" target="_blank" rel="nofollow">
+          Get This Deal →
+        </a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Price history chart -->
+{% if chart_labels %}
+<div class="mt-5">
+  <h2 class="h5 mb-3">Price History</h2>
+  <div style="height: 300px;">
+    <canvas id="priceChart"></canvas>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% if chart_labels %}
+<script>
+const ctx = document.getElementById('priceChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: {{ chart_labels | tojson }},
+    datasets: {{ chart_datasets | tojson }},
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': $' + (ctx.parsed.y ? ctx.parsed.y.toFixed(2) : 'N/A')
+        }
+      }
+    },
+    scales: {
+      y: {
+        ticks: {
+          callback: val => '$' + val.toFixed(0)
+        }
+      }
+    }
+  }
+});
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Best Prices on {{ category }} — {{ site_name }}{% endblock %}
+{% block meta_description %}Compare {{ category }} prices across Rogue, Titan, and Rep Fitness. Updated daily.{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-1">{{ category }}</h1>
+<p class="text-muted mb-4">Prices compared across all major retailers · Updated daily</p>
+
+{% if not products %}
+  <p class="text-muted">No products found in this category yet.</p>
+{% endif %}
+
+{% for item in products %}
+{% set p = item.product %}
+{% set listings = item.listings %}
+{% set best = listings | selectattr("price") | sort(attribute="price") | first | default(None) %}
+
+<div class="card mb-3 shadow-sm">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <a href="/product/{{ p.slug }}" class="text-decoration-none">
+          <h5 class="mb-1">{{ p.name }}</h5>
+        </a>
+        <p class="text-muted small mb-0">{{ p.description }}</p>
+      </div>
+      <div class="col-md-3 text-center">
+        {% if best and best.price %}
+          <div class="text-success fw-bold fs-5">${{ "%.2f"|format(best.price) }}</div>
+          <small class="text-muted">best at {{ best.retailer.replace("_"," ").title() }}</small>
+        {% else %}
+          <span class="text-muted">—</span>
+        {% endif %}
+      </div>
+      <div class="col-md-3 text-end">
+        <a href="/product/{{ p.slug }}" class="btn btn-sm btn-outline-secondary me-1">Compare</a>
+        {% if best and best.affiliate_url %}
+          <a href="{{ best.affiliate_url }}" class="btn btn-sm btn-danger" target="_blank" rel="nofollow">Buy →</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Retailer mini-prices -->
+    <div class="row mt-2 pt-2 border-top">
+      {% for l in listings %}
+      <div class="col text-center small {% if best and l.retailer == best.retailer %}fw-bold text-success{% else %}text-muted{% endif %}">
+        {{ l.retailer.replace("_"," ").title() }}<br>
+        {% if l.price %}
+          ${{ "%.2f"|format(l.price) }}
+        {% else %}
+          —
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

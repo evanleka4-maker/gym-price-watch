@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"/Users/evanleka/Project 2/database\" \"/Users/evanleka/Project 2/scraper\" \"/Users/evanleka/Project 2/web/templates\" \"/Users/evanleka/Project 2/web/static/css\" \"/Users/evanleka/Project 2/web/static/js\")",
+      "Bash(pip install *)",
+      "Bash(python3 -m pip install -r requirements.txt -q)",
+      "Bash(python3 run.py seed)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 run.py)",
+      "Bash(curl -s http://localhost:5000)",
+      "Bash(curl -s http://localhost:5001)",
+      "Bash(curl -s http://localhost:5001/category/Barbells)",
+      "Bash(gh auth *)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
