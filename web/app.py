@@ -20,6 +20,30 @@ def inject_globals():
     }
 
 
+@app.route("/sitemap.xml")
+def sitemap():
+    from flask import Response
+    from database.db import get_conn
+    base = "https://web-production-76350.up.railway.app"
+    conn = get_conn()
+    products = conn.execute("SELECT slug FROM products").fetchall()
+    categories = conn.execute("SELECT DISTINCT category FROM products").fetchall()
+    conn.close()
+
+    urls = [base + "/"]
+    for c in categories:
+        urls.append(f"{base}/category/{c['category']}")
+    for p in products:
+        urls.append(f"{base}/product/{p['slug']}")
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for url in urls:
+        xml += f"  <url><loc>{url}</loc></url>\n"
+    xml += "</urlset>"
+    return Response(xml, mimetype="application/xml")
+
+
 @app.route("/googleaabca5936e2a4a7d.html")
 def google_verify():
     return "google-site-verification: googleaabca5936e2a4a7d.html"
