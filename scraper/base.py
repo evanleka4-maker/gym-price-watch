@@ -7,9 +7,12 @@ import json
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Use urllib3 directly so cert_reqs='CERT_NONE' bypasses SSL at the lowest level.
-# requests + adapters + verify=False was not bypassing Titan's expired cert on Railway.
-_http = urllib3.PoolManager(cert_reqs='CERT_NONE', assert_hostname=False)
+# urllib3 2.x ignores cert_reqs kwarg — must pass an explicit ssl_context
+import ssl as _ssl
+_ctx = _ssl.create_default_context()
+_ctx.check_hostname = False
+_ctx.verify_mode = _ssl.CERT_NONE
+_http = urllib3.PoolManager(ssl_context=_ctx)
 
 HEADERS = {
     "User-Agent": (
