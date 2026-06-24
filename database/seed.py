@@ -24,6 +24,138 @@ def affiliate_url(retailer, base_url):
 
 
 CATALOG = [
+    # ── CROSS-RETAILER COMPARISONS (hero pages) ───────────────────────────────
+    {
+        "slug": "compare-mens-olympic-barbell",
+        "name": "Men's Olympic Barbell (20kg) — Price Comparison",
+        "category": "Barbells",
+        "description": "Compare prices on 20kg Olympic barbells across Rogue, Titan, Rep Fitness, and FringeSport. Updated daily.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/the-ohio-bar",
+            "titan":        "https://www.titanfitness.com/products/olympic-weightlifting-bar",
+            "rep_fitness":  "https://repfitness.com/products/rep-apache-bar",
+            "fringe":       "https://www.fringesport.com/products/wonder-bar-olympic-barbell",
+        }
+    },
+    {
+        "slug": "compare-power-bar",
+        "name": "Powerlifting Bar (29mm) — Price Comparison",
+        "category": "Barbells",
+        "description": "Compare power bar prices across Rogue, Titan, and Rep Fitness. Aggressive knurl, stiff shaft, IPF approved.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/ohio-power-bar",
+            "titan":        "https://www.titanfitness.com/products/texas-power-bar",
+            "rep_fitness":  "https://repfitness.com/products/rep-power-bar",
+        }
+    },
+    {
+        "slug": "compare-power-rack",
+        "name": "Power Rack — Price Comparison",
+        "category": "Power Racks",
+        "description": "Compare power rack prices across Rogue, Titan, and Rep Fitness. All 3x3 11-gauge steel.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-rm-4-monster-lite-rack",
+            "titan":        "https://www.titanfitness.com/products/t-3-power-rack",
+            "rep_fitness":  "https://repfitness.com/products/pr-4000-power-rack",
+        }
+    },
+    {
+        "slug": "compare-bumper-plates-45lb",
+        "name": "45lb Bumper Plates (Pair) — Price Comparison",
+        "category": "Bumper Plates",
+        "description": "Compare 45lb bumper plate prices across Rogue, Titan, Rep Fitness, and FringeSport. Updated daily.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-hg-2-0-bumper-plates",
+            "titan":        "https://www.titanfitness.com/products/competition-bumper-plates",
+            "rep_fitness":  "https://repfitness.com/products/rep-black-bumper-plates",
+            "fringe":       "https://www.fringesport.com/products/color-bumper-plates-by-fringesport",
+        }
+    },
+    {
+        "slug": "compare-flat-bench",
+        "name": "Flat Weight Bench — Price Comparison",
+        "category": "Benches",
+        "description": "Compare flat bench prices across Rogue, Titan, and Rep Fitness. All rated 1000lb+.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-utility-bench-2-0",
+            "titan":        "https://www.titanfitness.com/products/competition-flat-bench",
+            "rep_fitness":  "https://repfitness.com/products/rep-flat-bench-fb-5000",
+        }
+    },
+    {
+        "slug": "compare-adjustable-bench",
+        "name": "Adjustable Bench — Price Comparison",
+        "category": "Benches",
+        "description": "Compare adjustable bench prices across Titan and Rep Fitness. Incline, flat, and decline positions.",
+        "retailers": {
+            "titan":        "https://www.titanfitness.com/products/adjustable-bench",
+            "rep_fitness":  "https://repfitness.com/products/rep-ab-5200-adjustable-bench",
+        }
+    },
+    {
+        "slug": "compare-safety-squat-bar",
+        "name": "Safety Squat Bar — Price Comparison",
+        "category": "Specialty Bars",
+        "description": "Compare safety squat bar prices across Rogue, Titan, and Rep Fitness.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-safety-squat-bar",
+            "titan":        "https://www.titanfitness.com/products/safety-squat-bar",
+            "rep_fitness":  "https://repfitness.com/products/rep-safety-squat-bar",
+        }
+    },
+    {
+        "slug": "compare-trap-bar",
+        "name": "Trap Bar / Hex Bar — Price Comparison",
+        "category": "Specialty Bars",
+        "description": "Compare trap bar prices across Rogue, Titan, and Rep Fitness.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-tb-2-trap-bar",
+            "titan":        "https://www.titanfitness.com/products/trap-bar",
+            "rep_fitness":  "https://repfitness.com/products/rep-trap-bar",
+        }
+    },
+    {
+        "slug": "compare-kettlebell",
+        "name": "Cast Iron Kettlebell — Price Comparison",
+        "category": "Kettlebells",
+        "description": "Compare kettlebell prices across Rogue, Rep Fitness, and FringeSport.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-kettlebells",
+            "rep_fitness":  "https://repfitness.com/products/rep-cast-iron-kettlebells",
+            "fringe":       "https://www.fringesport.com/products/kettlebells-by-fringesport",
+        }
+    },
+    {
+        "slug": "compare-concept2-rower",
+        "name": "Concept2 Model D Rower — Price Comparison",
+        "category": "Cardio",
+        "description": "Compare Concept2 Model D rower prices across Rogue and FringeSport. Same product, different prices.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/concept2-model-d-rower",
+            "fringe":       "https://www.fringesport.com/products/concept2-model-d-rower",
+        }
+    },
+    {
+        "slug": "compare-knee-sleeves",
+        "name": "7mm Knee Sleeves — Price Comparison",
+        "category": "Accessories",
+        "description": "Compare knee sleeve prices across Rogue and Rep Fitness. Both 7mm neoprene, sold in pairs.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-knee-sleeves",
+            "rep_fitness":  "https://repfitness.com/products/rep-knee-sleeves",
+        }
+    },
+    {
+        "slug": "compare-lifting-belt",
+        "name": "10mm Lever Belt — Price Comparison",
+        "category": "Accessories",
+        "description": "Compare lever belt prices across Rogue and Titan. Both IPF approved, 10mm thick.",
+        "retailers": {
+            "rogue":        "https://www.roguefitness.com/rogue-ohio-lifting-belt",
+            "titan":        "https://www.titanfitness.com/products/lever-belt",
+        }
+    },
+
     # ── BARBELLS ─────────────────────────────────────────────────────────────
     {
         "slug": "rogue-ohio-bar",
