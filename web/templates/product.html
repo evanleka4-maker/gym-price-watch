@@ -59,6 +59,9 @@
               <a href="{{ l.affiliate_url }}" class="btn btn-sm btn-danger" target="_blank" rel="nofollow">
                 Shop at {{ l.retailer.replace("_"," ").title() }} →
               </a>
+              {% if l.retailer == "titan" %}
+              <div class="small text-muted mt-1" style="font-size:0.7rem;">⚠️ Titan's site has an expired SSL cert — click "Advanced → Proceed" in the browser warning</div>
+              {% endif %}
             </td>
           </tr>
           {% endfor %}
@@ -93,6 +96,9 @@
         <a href="{{ buy_listing.affiliate_url }}" class="btn btn-danger w-100" target="_blank" rel="nofollow">
           Get This Deal →
         </a>
+        {% if buy_listing.retailer == "titan" %}
+        <p class="small text-muted mt-2" style="font-size:0.75rem;">⚠️ Titan's site currently has an expired SSL certificate. If your browser shows a security warning, click "Advanced" then "Proceed to titanfitness.com" — the site itself is legitimate.</p>
+        {% endif %}
       </div>
     </div>
     {% endif %}
