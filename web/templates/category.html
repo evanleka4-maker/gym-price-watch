@@ -21,7 +21,14 @@
 <div class="card mb-3 shadow-sm">
   <div class="card-body">
     <div class="row align-items-center">
+      {% if p.image_url %}
+      <div class="col-2 col-md-1 text-center">
+        <img src="{{ p.image_url }}" alt="{{ p.name }}" style="width:60px;height:60px;object-fit:contain;">
+      </div>
+      <div class="col-10 col-md-5">
+      {% else %}
       <div class="col-md-6">
+      {% endif %}
         <a href="/product/{{ p.slug }}" class="text-decoration-none">
           <h5 class="mb-1">{{ p.name }}</h5>
         </a>

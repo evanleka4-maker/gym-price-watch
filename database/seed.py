@@ -627,17 +627,63 @@ CATALOG = [
 ]
 
 
+IMAGE_URLS = {
+    # Compare pages
+    "compare-mens-olympic-barbell": "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Mens%2020KG%20Barbells/RA0539-BLOX/RA0539-BLOX-TH_ekloct.png",
+    "compare-power-rack":           "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/401412_01.jpg",
+    "compare-bumper-plates-45lb":   "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Plates/Bumper%20Plates/HG22908/HG22908-H_ihyr6o.png",
+    "compare-adjustable-bench":     "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/401865_01.jpg",
+    "compare-safety-squat-bar":     "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Specialty%20Barbells/RA0370-EBLACK/RA0370-EBLACK-H_nrs93m.png",
+    "compare-trap-bar":             "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Specialty%20Barbells/RA0711/RA0711-h_t4b2kt.png",
+    "compare-kettlebell":           "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Conditioning/Strength%20Equipment/Kettlebells/IP0670/IP0670-H_j6gkfw.png",
+    "compare-concept2-rower":       "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Conditioning/Endurance%20/Concept%202%20Rowers/C2ROWER-CONFIG/C20003-H_mx9ogf.png",
+    "compare-lifting-belt":         "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Straps%20Wraps%20and%20Support%20/Belts%20/Powerlifting/WL0044/WL0044/UPDATED%20WL0044/WL0042-H_kv2rcv.png",
+    # Rogue
+    "rogue-ohio-bar":          "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Mens%2020KG%20Barbells/RA0539-BLOX/RA0539-BLOX-TH_ekloct.png",
+    "rogue-ohio-deadlift-bar": "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Mens%2020KG%20Barbells/RA0963-BLBR/RA0963-BLBR-h_y5edwu.png",
+    "rogue-safety-squat-bar":  "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Specialty%20Barbells/RA0370-EBLACK/RA0370-EBLACK-H_nrs93m.png",
+    "rogue-trap-bar":          "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Specialty%20Barbells/RA0711/RA0711-h_t4b2kt.png",
+    "rogue-hg-2-bumper-plates":"https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Weightlifting%20Bars%20and%20Plates/Plates/Bumper%20Plates/HG22908/HG22908-H_ihyr6o.png",
+    "rogue-kettlebell":        "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Conditioning/Strength%20Equipment/Kettlebells/IP0670/IP0670-H_j6gkfw.png",
+    "concept2-model-d-rower":  "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Conditioning/Endurance%20/Concept%202%20Rowers/C2ROWER-CONFIG/C20003-H_mx9ogf.png",
+    "rogue-lifting-belt":      "https://assets.roguefitness.com/f_auto,q_auto,c_limit,w_1600,b_rgb:ffffff/catalog/Straps%20Wraps%20and%20Support%20/Belts%20/Powerlifting/WL0044/WL0044/UPDATED%20WL0044/WL0042-H_kv2rcv.png",
+    # Titan
+    "titan-t-3-power-rack":          "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/401412_01.jpg",
+    "titan-x-3-power-rack":          "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/401387_01.jpg",
+    "titan-competition-bumper-plates":"https://cdn.shopify.com/s/files/1/0802/1508/1237/files/BBUMPv2_01.jpg",
+    "titan-iron-plates":             "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/402060_01.jpg",
+    "titan-competition-flat-bench":  "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/401847_01.jpg",
+    "titan-adjustable-bench":        "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/401865_01.jpg",
+    "titan-lever-belt":              "https://cdn.shopify.com/s/files/1/0802/1508/1237/files/429971_01.jpg",
+    # Rep Fitness
+    "rep-fitness-pr-5000":   "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/Pre-ConfiguredPR-50006-Post-High-End-Thumbnail_3f0eec68-922f-4d0d-b1b1-2c0705bfd3da.jpg",
+    "rep-fitness-power-bar": "https://cdn.shopify.com/s/files/1/0574/1215/7598/files/BlackDiamond-Stainless-thumbnail.jpg",
+    "swiss-bar-multi-grip":  "https://cdn.shopify.com/s/files/1/0574/1215/7598/products/Shopify-BB-4310-Thumbnail.jpg",
+    # FringeSport
+    "fringe-budget-bar":    "https://cdn.shopify.com/s/files/1/0049/4272/files/20kg-Men_s-Wonder-Bar-Olympic-Barbell-Fringe-Sport-423251792.jpg",
+    "fringe-bumper-plates": "https://cdn.shopify.com/s/files/1/0049/4272/files/Savage-Bumper-Plate-_Pairs_-Fringe-Sport-107055979.jpg",
+    "fringe-kettlebell":    "https://cdn.shopify.com/s/files/1/0049/4272/files/Savage-Kettlebells-Fringe-Sport-604304022.jpg",
+    "fringe-squat-stand":   "https://cdn.shopify.com/s/files/1/0049/4272/files/Garage-Series-Squat-Rack-Pull-Up-Bar-Fringe-Sport-106908938.jpg",
+}
+
+
 def seed():
     init_db()
     conn = get_conn()
     c = conn.cursor()
 
     for item in CATALOG:
+        image = IMAGE_URLS.get(item["slug"], item.get("image_url", ""))
         c.execute("""
-            INSERT OR IGNORE INTO products (slug, name, category, description, image_url)
+            INSERT INTO products (slug, name, category, description, image_url)
             VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT(slug) DO UPDATE SET
+                name = excluded.name,
+                category = excluded.category,
+                description = excluded.description,
+                image_url = CASE WHEN excluded.image_url != '' THEN excluded.image_url ELSE products.image_url END
         """, (item["slug"], item["name"], item["category"],
-              item["description"], item.get("image_url", "")))
+              item["description"], image))
 
         product_id = c.execute(
             "SELECT id FROM products WHERE slug = ?", (item["slug"],)
